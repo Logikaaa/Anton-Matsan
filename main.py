@@ -25,7 +25,7 @@ button_note_create = QPushButton('Створити замітку') # з'явл�
 button_note_del = QPushButton('Видалити замітку')
 button_note_save = QPushButton('Зберегти замітку')
 field_text = QTextEdit()
-
+'''
 field_tag = QLineEdit('')
 field_tag.setPlaceholderText('Введіть тег...')
 field_text = QTextEdit()
@@ -34,7 +34,7 @@ button_tag_del = QPushButton('Відкріпити від замітки')
 button_tag_search = QPushButton('Шукакти замітки за тегом')
 list_tags = QListWidget()
 list_tag_label = QLabel('Список тегів')
-
+'''
 layout_notes = QHBoxLayout()
 col_1 = QVBoxLayout()
 col_1.addWidget(field_text)
@@ -50,16 +50,16 @@ row_2 = QHBoxLayout()
 row_2.addWidget(button_note_save)
 col_2.addLayout(row_1)
 col_2.addLayout(row_2)
-
+'''
 col_2.addWidget(list_tag_label)
 col_2.addWidget(list_tags)
 col_2.addWidget(field_tag)
-
+'''
 row_3 = QHBoxLayout()
-row_3.addWidget(button_tag_add)
-row_3.addWidget(button_tag_del)
+#row_3.addWidget(button_tag_add)
+#row_3.addWidget(button_tag_del)
 row_4 = QHBoxLayout()
-row_4.addWidget(button_tag_search)
+#row_4.addWidget(button_tag_search)
 
 col_2.addLayout(row_3)
 col_2.addLayout(row_4)
@@ -80,7 +80,7 @@ def add_note():
     if ok and note_name != '':
         notes[note_name]={'текст': '', 'теги': []}
         list_notes.addItem(note_name)
-        list_tags.addItems(notes[note_name]['теги'])
+        #list_tags.addItems(notes[note_name]['теги'])
         print(notes)
 
 def save_note():
@@ -105,11 +105,11 @@ def del_note():
         print(notes)
     else:
         print('Замітка для вилучення не вибрана!')
-
+'''
 def add_tag():
     if list_notes.selectedItems():
         key=list_notes.selectedItems()[0].text()
-        tag=field_tag.text()
+        #tag=field_tag.text()
         if not tag in notes[key]['теги']:
             notes[key]['теги'].append(tag)
             list_tags.clear()
@@ -118,13 +118,13 @@ def add_tag():
         print(notes)
     else:
         print('Замітка для додавання тега не вибрана!')
-
+'''
 
 button_note_create.clicked.connect(add_note)
 list_notes.itemClicked.connect(show_note)
 button_note_save.clicked.connect(save_note)
 button_note_del.clicked.connect(del_note)
-button_tag_add.clicked.connect(add_tag)
+#button_tag_add.clicked.connect(add_tag)
 with open('notes_data.json', 'r') as file:
     notes=json.load(file)
 list_notes.addItems(notes)
